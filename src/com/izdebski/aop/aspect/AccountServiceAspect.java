@@ -2,9 +2,15 @@ package com.izdebski.aop.aspect;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Component;
 
+@Aspect
+@Component
 public class AccountServiceAspect {
 
+    @Around("execution(* com.izdebski.service.impl.AccountServiceImpl.*(..))")
     public Object aroundAdvice(ProceedingJoinPoint joinPoint) {
         System.out.println("Before method:" + joinPoint.getSignature().getName() + ",Class:" + joinPoint.getTarget()
                 .getClass().getSimpleName());

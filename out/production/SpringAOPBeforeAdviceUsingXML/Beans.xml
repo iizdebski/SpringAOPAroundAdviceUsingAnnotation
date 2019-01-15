@@ -9,16 +9,10 @@
     http://www.springframework.org/schema/aop
     http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <aop:config>
-        <aop:pointcut expression="execution(* com.izdebski.service.impl.AccountServiceImpl.*(..))"
-                      id="selectALL"/>
-        <aop:aspect ref="accountServiceAspect">
-            <aop:around method="aroundAdvice" pointcut-ref="selectALL"/>
-        </aop:aspect>
-    </aop:config>
-    <bean id="accountServiceAspect" class="com.izdebski.aop.aspect.AccountServiceAspect">
-    </bean>
+    <aop:aspectj-autoproxy/>
+    <context:component-scan base-package="com.izdebski.service.impl"></context:component-scan>
+    <context:component-scan base-package="com.izdebski.aop.aspect"></context:component-scan>
 
-    <bean id="accountService" class="com.izdebski.service.impl.AccountServiceImpl">
-    </bean>
+
+
 </beans>
